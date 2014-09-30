@@ -1,0 +1,21 @@
+{
+  "name": "Wellington CSS - Slide out menu",
+  "version": "0.0.1",
+  "authors": [
+    "James Macfie <james@macfie.co.nz>"
+  ],
+  "description": "CSS only off canvas menu",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "http://jamesmacfie.com",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "css"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.2.0"
+  }
+}

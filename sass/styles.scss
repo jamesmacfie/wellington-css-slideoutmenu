@@ -1,0 +1,162 @@
+/* Third party */
+@import '../bower_components/font-awesome/scss/font-awesome';
+
+/* Variables */
+
+$headerBg: #34c3a5;
+$menuBg: #3d424e;
+$text: #eaeaea;
+$contentBg: #eaeaea;
+
+$numberOfNavItems: 5;
+
+/* Base */
+
+*, *:after, *:before {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family: helvetica;
+  display: flex;
+}
+
+/* Toggle */
+.menuToggle {
+  display: none;
+}
+
+.menuLabel, .menuLabel:before, .menuLabel:after {
+  background: $text;
+  border-radius: 3px;
+  display: inline-block;
+  height: 5px;
+  left: 10px;
+  position: absolute;
+  width: 35px;
+}
+
+.menuLabel {
+  position: relative;
+  transition: all 0.2s;
+
+  &:before, &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+  }
+
+  &:before {
+      top: 20px;
+      transition: all 0.2s;
+  }
+
+  &:after {
+      top: 10px;
+  }
+}
+
+/* Header */
+.header {
+  background-color: $headerBg;
+  height: 70px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+/* Nav */
+.nav {
+  background-color: $menuBg;
+  height: 100vh;
+  margin-left: 0px;
+  overflow: hidden;
+  transition: width 0.5s ease-in-out;
+  width: 0px;
+}
+
+.navItem {
+  color: $text;
+  list-style: none;
+  margin: 20px;
+  opacity: 0;
+
+  &:first-child {
+    margin-top: 70px;
+  }
+}
+
+.navIcon {
+  margin-right: 10px
+}
+
+/* Content */
+.content {
+  background-color: $contentBg;
+  flex: 1;
+  position: relative;
+}
+
+.bodyText {
+  padding: 0 20px;
+}
+
+/* Checked state */
+.menuToggle:checked ~ .content .menuLabel:after {
+
+}
+
+.menuToggle:checked ~ .nav {
+  width: 300px;
+}
+
+@keyframes menu {
+  0%   {
+    margin-left: -100%;
+    opacity: 0;
+  }
+  25%  {
+    margin-left: -30%;
+    opacity: 0.7;
+  }
+  50%  {
+    margin-left: 20px;
+    opacity: 1;
+  }
+  100% {
+    margin-left: 20px;
+    opacity: 1;
+  }
+}
+
+.menuToggle:checked ~ .content .menuLabel {
+  left: 10px;
+  transform: rotate(45deg);
+  top: 10px;
+
+  &:after {
+    opacity: 0;
+  }
+
+  &:before {
+    transform: rotate(90deg);
+    top: 0;
+  }
+}
+
+
+.menuToggle:checked ~ .nav li {
+   animation: menu 1s;
+   animation-fill-mode: forwards;
+   opacity: 0;
+}
+
+
+@for $i from 1 through $numberOfNavItems {
+  .menuToggle:checked ~ .nav li:nth-child(#{$i}) {
+    animation-delay: (#{$i * 0.1s});
+  }
+}
+
